@@ -20,3 +20,5 @@ RUN	apt-get install -y build-essential  ca-certificates supervisor wget curl git
 
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 EXPOSE 80 8080 443
+
+
