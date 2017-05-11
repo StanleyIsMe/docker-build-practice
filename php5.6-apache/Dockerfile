@@ -5,21 +5,20 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # install some package
 RUN apt-get update && apt-get install -y python-software-properties software-properties-common && \
-	add-apt-repository -y ppa:ondrej/php 
+	add-apt-repository -y ppa:ondrej/php && apt-get update
  
-RUN	apt-get install -y build-essential  ca-certificates supervisor wget curl git vim apache2 && \
-	apt-get install -y --force-yes libapache2-mod-php5 php5-cli php5-curl php5-dev php5-fpm php5-mcrypt \
-	php5-memcached php5-mysqlnd php5-xdebug php5-gd php5-json php5-mongo && \
+RUN	apt-get install -y --force-yes build-essential  ca-certificates supervisor wget curl git vim apache2 && \
+	apt-get install -y --force-yes libapache2-mod-php5.6 php5.6-cli php5.6-curl php5.6-dev php5.6-fpm php5.6-mcrypt \
+	php-memcached php-xdebug php5.6-gd php5.6-json php-mongo php5.6-mysql && \
 	curl -sS https://getcomposer.org/installer | php && \
 	mv composer.phar /usr/local/bin/composer 
-	
+
+
 RUN apt-get autoclean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/* && \
-	php5enmod mcrypt && \
+	phpenmod mcrypt && \
 	/usr/sbin/a2ensite default-ssl && /usr/sbin/a2enmod ssl && \
 	echo "<?php echo phpinfo();" > /var/www/html/index.php
 
 VOLUME ~/.composer/cache
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 EXPOSE 80 8080 443
-
-
