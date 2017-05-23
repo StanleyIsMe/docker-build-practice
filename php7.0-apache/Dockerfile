@@ -18,8 +18,6 @@ RUN apt-get autoclean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/* &&
 	phpenmod mcrypt && \
 	/usr/sbin/a2ensite default-ssl && /usr/sbin/a2enmod ssl && \
 	echo "<?php echo phpinfo();" > /var/www/html/index.php
-
-VOLUME ~/.composer/cache
-
+	
 CMD ["/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
 EXPOSE 80 8080 443
