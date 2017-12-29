@@ -32,6 +32,7 @@ COPY ./php-fpm.conf /etc/supervisor/conf.d/php-fpm.conf
 COPY ./supervisord.conf /etc/supervisor/supervisord.conf
 RUN mkdir -p /var/log/supervisor
 
+# php-fpm start
 RUN service php7.1-fpm start
 RUN /usr/sbin/php-fpm7.1
 
