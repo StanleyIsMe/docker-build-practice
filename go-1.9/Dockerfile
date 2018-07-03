@@ -7,6 +7,7 @@ RUN apt-get install -y language-pack-en
 RUN locale-gen en_US.UTF-8
 
 # install Go Lang
+RUN apt-get install -y software-properties-common
 RUN add-apt-repository ppa:gophers/go && apt-get update
 RUN apt-get install -y --force-yes build-essential  ca-certificates supervisor wget curl git vim unzip
 RUN apt-get install -y --force-yes golang-1.9 golang-go mercurial 
