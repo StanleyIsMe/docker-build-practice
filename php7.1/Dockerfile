@@ -15,10 +15,11 @@ RUN	apt-get install -y --force-yes build-essential  ca-certificates supervisor w
 	apt-get install -y --force-yes php-pear php-dev libcurl4-openssl-dev php7.1 php7.1-mysql php7.1-fpm php7.1-cli \
 	php7.1-common php7.1-curl php7.1-gd php7.1-intl php7.1-json php7.1-mbstring php7.1-mcrypt php7.1-opcache \ 
 	php7.1-pgsql php7.1-dba php7.1-phpdbg php7.1-soap php7.1-sqlite3 php7.1-xml php7.1-xmlrpc \ 
-	php7.1-xsl php7.1-zip php-mongodb php-memcache php-memcached php-redis && \
-	pecl install mongodb && \	
+	php7.1-xsl php7.1-zip php-mongodb php-memcache php-memcached php-redis && \	
 	curl -sS https://getcomposer.org/installer | php && \
 	mv composer.phar /usr/local/bin/composer 
+
+RUN pecl install mongodb
 
 # clear apt-get cache
 RUN apt-get autoclean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/* && \
