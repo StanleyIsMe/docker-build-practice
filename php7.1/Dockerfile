@@ -25,7 +25,7 @@ RUN pecl install mongodb
 RUN apt-get autoclean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/* && \
 	phpenmod mcrypt
 
-# setting php-fpm 
+# setting php-fpm && php.ini
 RUN sed -i 's/^listen =.*/listen = [::]:9000/g' /etc/php/7.1/fpm/pool.d/www.conf  && \
     sed -i 's/^;clear_env =/clear_env =/g' /etc/php/7.1/fpm/pool.d/www.conf && \
     echo "extension=mongodb.so" >> /etc/php/7.1/fpm/php.ini
