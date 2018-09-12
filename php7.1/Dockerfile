@@ -21,6 +21,9 @@ RUN	apt-get install -y --force-yes build-essential  ca-certificates supervisor w
 
 RUN pecl install mongodb
 
+# exclude from something unnecessary bug
+RUN apt-get purge -y php7.2-*
+
 # clear apt-get cache
 RUN apt-get autoclean && apt-get -y autoremove && rm -rf /var/lib/apt/lists/* && \
 	phpenmod mcrypt
