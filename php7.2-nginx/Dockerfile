@@ -2,10 +2,10 @@ FROM php:7.2-fpm
 MAINTAINER Stanley <stanley.hsieh@storm.mg>
 
 # install some package
-RUN apt-get update
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 
 # install extension
-RUN	apt-get install -y build-essential wget curl git vim unzip apt-utils zlib1g-dev libmemcached-dev libcurl4-openssl-dev
+RUN    apt-get install -y build-essential wget curl git vim unzip apt-utils zlib1g-dev libmemcached-dev libcurl4-openssl-dev pkg-config libssl-dev
 RUN    pecl install redis-4.0.1 
 RUN    pecl install memcached-3.0.4 
 RUN    pecl install mongodb-1.5.3 
