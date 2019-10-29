@@ -36,9 +36,10 @@ RUN docker-php-ext-install xsl
 RUN docker-php-ext-install zip 
 RUN docker-php-ext-install soap 
 RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install tokenizer exif
 
 RUN pecl install mcrypt-1.0.1 && docker-php-ext-enable mcrypt
-RUN    docker-php-ext-enable mcrypt
+RUN docker-php-ext-enable mcrypt
 
 RUN apt-get install -y nginx supervisor
 COPY nginx.conf /etc/nginx
